@@ -85,7 +85,7 @@ FeatureFlagsFirebaseContainer.propTypes = {
   children: PropTypes.oneOfType([ PropTypes.func, PropTypes.node ]),
 };
 
-export const withFeature = (WrappedComponent, name) => (props) => {
+export const withFeatureFlags = (WrappedComponent, name) => (props) => {
   const featureFlags = useContext(FeatureFlagsContext);
     const newProps = {...props};
 
