@@ -85,6 +85,20 @@ FeatureFlagsFirebaseContainer.propTypes = {
   children: PropTypes.oneOfType([ PropTypes.func, PropTypes.node ]),
 };
 
+export const withFeature = (WrappedComponent, name) => (props) => {
+  const featureFlags = useContext(FeatureFlagsContext);
+    const newProps = {...props};
+
+    if (name) {
+      newProps[name] = featureFlags[name];
+    }
+    else {
+      newProps.featureFlags = featureFlags;
+    }
+
+    return <WrappedComponent {...newProps} />;
+};
+
 function propRender (prop) {
   if (typeof prop === 'function') {
     // Prop is a Component, so render it.
